@@ -1,0 +1,91 @@
+<h4 class="my-4">{{this.actionTitle1}}</h4>
+
+<div>
+    <input type="hidden" [(ngModel)]="customer.customerId" name="customerId"><br>
+    <form [formGroup]="registerForm" (ngSubmit)="saveCustomerDetails()">
+        <table class="table table-responsive table-sm">
+            <tr>
+                <td>First Name:</td>
+                <td><input type="text" [(value)]=this.customer.firstName formControlName="firstName"
+                        [ngClass]="{ 'is-invalid': saved && fields.firstName.errors }" />
+                    <div *ngIf="saved && fields.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="fields.firstName.errors.required">First Name is required</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><input type="text" [(value)]=this.customer.lastName formControlName="lastName"
+                        [ngClass]="{ 'is-invalid': saved && fields.lastName.errors }" />
+                    <div *ngIf="saved && fields.lastName.errors" class="invalid-feedback">
+                        <div *ngIf="fields.lastName.errors.required">Last Name is required</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Mobile Number:</td>
+                <td><input type="text" [(value)]=this.customer.mobileNumber formControlName="mobileNumber"
+                        minlength="10" maxlength="10" [pattern]="mobNumberPattern"
+                        [ngClass]="{ 'is-invalid': saved && fields.mobileNumber.errors }" />
+                    <div *ngIf="saved && fields.mobileNumber.errors" class="invalid-feedback">
+                        <div *ngIf="fields.mobileNumber.errors.required">Mobile Number is required</div>
+                        <div *ngIf="fields.mobileNumber.errors.pattern">Mobile number not valid</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Email ID:</td>
+                <td><input type="text" [(value)]=this.customer.emailID formControlName="emailID"
+                        [ngClass]="{ 'is-invalid': saved && fields.emailID.errors }" />
+                    <div *ngIf="saved && fields.emailID.errors" class="invalid-feedback">
+                        <div *ngIf="fields.emailID.errors.required">Email is required</div>
+                        <div *ngIf="fields.emailID.errors.email">Email must be a valid email address</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td><input type="text" [(value)]=this.customer.address formControlName="address"
+                        [ngClass]="{ 'is-invalid': saved && fields.address.errors }" />
+                    <div *ngIf="saved && fields.address.errors" class="invalid-feedback">
+                        <div *ngIf="fields.address.errors.required">Address is required</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td><input type="text" [(value)]=this.customer.city formControlName="city"
+                        [ngClass]="{ 'is-invalid': saved && fields.city.errors }" />
+                    <div *ngIf="saved && fields.city.errors" class="invalid-feedback">
+                        <div *ngIf="fields.city.errors.required">City is required</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>SSN:</td>
+                <td><input type="text" [(value)]=this.customer.ssn formControlName="ssn" minlength="9" maxlength="9"
+                        [pattern]="ssnPattern" [ngClass]="{ 'is-invalid': saved && fields.ssn.errors }" />
+                    <div *ngIf="saved && fields.ssn.errors" class="invalid-feedback">
+                        <div *ngIf="fields.ssn.errors.required">SSN is required</div>
+                        <div *ngIf="fields.ssn.errors.pattern">SSN not valid</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td align="center"><button button class="btn btn-primary mr-1">Save</button><br></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="alert alert-success" role="alert" *ngIf="this.apiResponse">
+                        {{this.apiResponse}}
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+
+    </form>
+</div>

@@ -1,0 +1,77 @@
+<h4 class="my-4">Customer Services:</h4>
+
+<div>
+    <form>
+        <table class="table table-responsive table-sm">
+            <tr>
+                <td>Enter Customer Id:</td>
+                <td><input type="text" [(ngModel)]="customerIdSearch" name="customerIdSearch" required="true"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td align="center"><button button class="btn btn-primary mr-1"
+                        (click)="getAccountList(customerIdSearch)">Search</button></td>
+            </tr>
+        </table>
+
+        <table class="table table-responsive table-sm">
+            <tr>
+                <th>From Account</th>
+                <th>To Account</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <td>
+                    <select id="from-account" #fact (change)="getFromTransferAccount(fact.value)">
+                        <option [selected]="true" disabled> -- Select One Account -- </option>
+                        <option *ngFor="let accountIn of accounts">
+                            {{accountIn.accountNo}}
+                        </option>
+                    </select>
+                </td>
+                <td>
+                    <select id="to-account" #tact (change)="getToTransferAccount(tact.value)">
+                        <option [selected]="true" disabled> -- Select One Account -- </option>
+                        <option *ngFor="let accountIn of accounts">
+                            {{accountIn.accountNo}}
+                        </option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="transferAmount" name="transferAmount" pattern="[0-9]*" />
+                </td>
+                <td align="center">
+                    <button class="btn btn-primary mr-1"
+                        (click)="transferOwnBalance(account.accountNo)">Transfer</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan=4>
+                    <div class="alert alert-info" role="alert" *ngIf="this.apiResponse">
+                        {{this.apiResponse}}
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+
+<div>
+    <table id="accountlist" class="table table-bordered table-sm" width="100%">
+        <thead class="thead-dark">
+            <tr>
+                <th>Account No</th>
+                <th>Type</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tr *ngFor="let account of accounts">
+            <td>{{account.accountNo}}</td>
+            <td>{{account.type}}</td>
+            <td>{{account.amount}}</td>
+        </tr>
+    </table>
+</div>

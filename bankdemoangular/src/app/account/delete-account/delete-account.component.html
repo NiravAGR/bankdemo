@@ -1,0 +1,56 @@
+<h4 class="my-4">{{this.actionTitle1}}</h4>
+
+<div>
+    <table class="table table-responsive table-sm">
+        <tr>
+            <td>Enter Account No:</td>
+            <td><input type="text" [(ngModel)]="accountNoSearch" name="accountNoSearch"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="center"><button class="btn btn-primary mr-1"
+                    (click)="getAccount(accountNoSearch)">Search</button></td>
+        </tr>
+    </table>
+
+    <table class="table table-responsive table-sm">
+        <tr>
+            <td>Account No:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><input type="text" [(value)]=this.account.accountNo name="accountNo" disabled="true" />
+            </td>
+        </tr>
+        <tr>
+            <td>Customer Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><input type="text" [(value)]=this.account.customerId name="customerId" disabled="true" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>Type</td>
+            <td><input type="text" [(value)]=this.account.type name="type" disabled="true" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>Balance:</td>
+            <td><input type="text" [(value)]=this.account.amount name="amount" disabled="true" />
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td align="center"><button button class="btn btn-primary mr-1"
+                    (click)="deleteAccount(this.account.accountNo)">Delete</button><br></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="alert alert-info" role="alert" *ngIf="this.apiResponse">
+                    {{this.apiResponse}}
+                </div>
+            </td>
+
+        </tr>
+    </table>
+
+</div>

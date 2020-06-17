@@ -1,0 +1,82 @@
+<h4 class="my-4">{{this.actionTitle1}}</h4>
+
+<div>
+    <table class="table table-responsive table-sm">
+        <tr>
+            <td>Enter Customer Id:</td>
+            <td><input type="text" [(ngModel)]="customerIdSearch" name="customerIdSearch"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="center"><button class="btn btn-primary mr-1"
+                    (click)="getCustomer(customerIdSearch)">Search</button></td>
+        </tr>
+    </table>
+
+    <table class="table table-responsive table-sm">
+        <tr>
+            <td>Customer Id:</td>
+            <td><input type="text" [(value)]=this.customer.customerId name="customerId" disabled="true" />
+
+            </td>
+        </tr>
+        <tr>
+            <td>First Name:</td>
+            <td><input type="text" [(value)]=this.customer.firstName name="firstName" disabled="true" />
+
+            </td>
+        </tr>
+        <tr>
+            <td>Last Name:</td>
+            <td><input type="text" [(value)]=this.customer.lastName name="lastName" disabled="true" />
+
+            </td>
+        </tr>
+        <tr>
+            <td>Mobile Number:</td>
+            <td><input type="text" [(value)]=this.customer.mobileNumber name="mobileNumber" disabled="true" />
+
+            </td>
+        </tr>
+        <tr>
+            <td>Email ID:</td>
+            <td><input type="text" [(value)]=this.customer.emailID name="emailID" disabled="true" />
+
+            </td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td><input type="text" [(value)]=this.customer.address name="address" disabled="true" />
+
+            </td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td><input type="text" [(value)]=this.customer.city name="city" disabled="true" />
+
+            </td>
+        </tr>
+        <tr>
+            <td>SSN:</td>
+            <td><input type="text" [(value)]=this.customer.ssn name="ssn" disabled="true" />
+
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td align="center"><button button class="btn btn-primary mr-1"
+                    (click)="deleteCustomer(this.customer.customerId)">Delete</button><br></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="alert alert-info" role="alert" *ngIf="this.apiResponse">
+                    {{this.apiResponse}}
+                </div>
+            </td>
+
+        </tr>
+    </table>
+
+</div>

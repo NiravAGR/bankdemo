@@ -1,0 +1,69 @@
+<h4 class="my-4">{{this.actionTitle1}}</h4>
+
+<div>
+    <table class="table table-responsive table-sm">
+        <tr>
+            <td>Enter Account No:</td>
+            <td><input type="text" [(ngModel)]="accountNoSearch" name="accountNoSearch"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="center"><button class="btn btn-primary mr-1"
+                    (click)="getAccount(accountNoSearch)">Search</button></td>
+        </tr>
+    </table>
+    <br><br>
+    <form [formGroup]="registerForm" (ngSubmit)="updateAccountDetails()">
+        <table class="table table-responsive table-sm">
+            <tr>
+                <td>Account No:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td><input type="text" [(value)]=this.account.accountNo formControlName="accountNo" disabled="true" />
+                </td>
+            </tr>
+            <tr>
+                <td>Customer Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td><input type="text" [(value)]=this.account.customerId formControlName="customerId" disabled="true" />
+
+                </td>
+            </tr>
+            <tr>
+            <tr>
+                <td>Type</td>
+                <td><input type="text" [(value)]=this.account.type formControlName="type"
+                        [ngClass]="{ 'is-invalid': saved && fields.type.errors }" />
+                    <div *ngIf="saved && fields.type.errors" class="invalid-feedback">
+                        <div *ngIf="fields.type.errors.required">Type is required</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+
+            <tr>
+                <td>Balance:</td>
+                <td><input type="text" [(value)]=this.account.amount formControlName="amount" minlength="9"
+                        maxlength="9" [pattern]="amountPattern"
+                        [ngClass]="{ 'is-invalid': saved && fields.amount.errors }" />
+                    <div *ngIf="saved && fields.amount.errors" class="invalid-feedback">
+                        <div *ngIf="fields.amount.errors.required">Amount is required</div>
+                        <div *ngIf="fields.amount.errors.pattern">Amount not valid</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td align="center"><button button class="btn btn-primary mr-1">Save</button><br></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="alert alert-info" role="alert" *ngIf="this.apiResponse">
+                        {{this.apiResponse}}
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+
+    </form>
+</div>

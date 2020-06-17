@@ -1,0 +1,7 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css";
+
+body {
+    padding-top: 56px;
+  }
