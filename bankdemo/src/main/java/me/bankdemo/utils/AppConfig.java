@@ -28,28 +28,35 @@ public class AppConfig {
 
 		LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
 
-		Properties properties = new Properties();
+		try {
 
-		// Setting JDBC properties
-		properties.put(DRIVER, env.getProperty("mysql.driver"));
-		properties.put(URL, env.getProperty("mysql.url"));
-		properties.put(USER, env.getProperty("mysql.user"));
-		properties.put(PASS, env.getProperty("mysql.password"));
+			Properties properties = new Properties();
 
-		// Setting Hibernate properties
-		properties.put(SHOW_SQL, env.getProperty("hibernate.show_sql"));
-		properties.put(HBM2DDL_AUTO, env.getProperty("hibernate.hbm2ddl.auto"));
-		// properties.put(DIALECT, env.getProperty("hibernate.hbm2ddl.auto"));
+			// Setting JDBC properties
+			properties.put(DRIVER, env.getProperty("mysql.driver"));
+			properties.put(URL, env.getProperty("mysql.url"));
+			properties.put(USER, env.getProperty("mysql.user"));
+			properties.put(PASS, env.getProperty("mysql.password"));
 
-		// Setting C3P0 properties
-		properties.put(C3P0_MIN_SIZE, env.getProperty("hibernate.c3p0.min_size"));
-		properties.put(C3P0_MAX_SIZE, env.getProperty("hibernate.c3p0.max_size"));
-		properties.put(C3P0_ACQUIRE_INCREMENT, env.getProperty("hibernate.c3p0.acquire_increment"));
-		properties.put(C3P0_TIMEOUT, env.getProperty("hibernate.c3p0.timeout"));
-		properties.put(C3P0_MAX_STATEMENTS, env.getProperty("hibernate.c3p0.max_statements"));
+			// Setting Hibernate properties
+			properties.put(SHOW_SQL, env.getProperty("hibernate.show_sql"));
+			properties.put(HBM2DDL_AUTO, env.getProperty("hibernate.hbm2ddl.auto"));
+			// properties.put(DIALECT, env.getProperty("hibernate.hbm2ddl.auto"));
 
-		factoryBean.setHibernateProperties(properties);
-		factoryBean.setPackagesToScan("me.bankdemo.model");
+			// Setting C3P0 properties
+			properties.put(C3P0_MIN_SIZE, env.getProperty("hibernate.c3p0.min_size"));
+			properties.put(C3P0_MAX_SIZE, env.getProperty("hibernate.c3p0.max_size"));
+			properties.put(C3P0_ACQUIRE_INCREMENT, env.getProperty("hibernate.c3p0.acquire_increment"));
+			properties.put(C3P0_TIMEOUT, env.getProperty("hibernate.c3p0.timeout"));
+			properties.put(C3P0_MAX_STATEMENTS, env.getProperty("hibernate.c3p0.max_statements"));
+
+			factoryBean.setHibernateProperties(properties);
+			factoryBean.setPackagesToScan("me.bankdemo.model");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 
 		return factoryBean;
 	}
@@ -57,8 +64,12 @@ public class AppConfig {
 	@Bean
 	public HibernateTransactionManager getTransactionManager() {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-		transactionManager.setSessionFactory(getSessionFactory().getObject());
-
+		try {
+			transactionManager.setSessionFactory(getSessionFactory().getObject());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 		return transactionManager;
 	}
 }
